@@ -1,5 +1,6 @@
 import 'package:expenses_app/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MainApp());
@@ -17,6 +18,9 @@ class MainApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: "t1",
@@ -42,7 +46,6 @@ class MyHomePage extends StatelessWidget {
           centerTitle: true,
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(
@@ -86,7 +89,7 @@ class MyHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            t.date.toString(),
+                            DateFormat('dd/MMM/y').format(t.date),
                             style: const TextStyle(
                               color: Colors.grey,
                             ),
@@ -98,6 +101,40 @@ class MyHomePage extends StatelessWidget {
                 );
               }).toList(),
             ),
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    TextField(
+                      decoration: const InputDecoration(labelText: "Título"),
+                      controller: titleController,
+                    ),
+                    TextField(
+                      decoration:
+                          const InputDecoration(labelText: "Valor (R\$)"),
+                      controller: valueController,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          child: const Text(
+                            "Nova Transação",
+                            style: TextStyle(color: Colors.purple),
+                          ),
+                          onPressed: () => {
+                            print(titleController.text),
+                            print(valueController.text),
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
           ],
         ));
   }
