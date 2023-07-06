@@ -64,16 +64,32 @@ class MyHomePage extends StatelessWidget {
                           vertical: 10,
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2),
+                          border: Border.all(color: Colors.purple, width: 2),
                         ),
                         padding: const EdgeInsets.all(10),
-                        child: Text(t.value.toString()),
+                        child: Text(
+                          "R\$ ${t.value.toStringAsFixed(2)}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.purple),
+                        ),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(t.title),
+                          Text(
+                            t.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           Text(
                             t.date.toString(),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
                         ],
                       ),
