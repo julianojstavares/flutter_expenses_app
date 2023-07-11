@@ -47,7 +47,7 @@ class TransactionList extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(6.0),
                         child: FittedBox(
-                          child: Text("R\$${t.value}"),
+                          child: Text("R\$${t.value.toStringAsFixed(2)}"),
                         ),
                       ),
                     ),
@@ -55,7 +55,7 @@ class TransactionList extends StatelessWidget {
                       t.title,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    subtitle: Text(DateFormat('dd/MMM/y').format(t.date)),
+                    subtitle: Text(DateFormat('dd/MMM/y').format(t.date!)),
                   ),
                 );
               },

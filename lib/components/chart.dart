@@ -15,9 +15,9 @@ class Chart extends StatelessWidget {
       double totalSum = 0.0;
 
       for (int i = 0; i < recentTransaction.length; i++) {
-        bool sameDay = recentTransaction[i].date.day == weekDay.day;
-        bool sameMonth = recentTransaction[i].date.month == weekDay.month;
-        bool sameYear = recentTransaction[i].date.year == weekDay.year;
+        bool sameDay = recentTransaction[i].date!.day == weekDay.day;
+        bool sameMonth = recentTransaction[i].date!.month == weekDay.month;
+        bool sameYear = recentTransaction[i].date!.year == weekDay.year;
 
         if (sameDay && sameMonth && sameYear) {
           totalSum += recentTransaction[i].value;
@@ -52,7 +52,9 @@ class Chart extends StatelessWidget {
               child: ChartBar(
                 label: t['day'].toString(),
                 value: double.tryParse(t['value'].toString()),
-                percentage: (t['value'] as double) / _weekTotalValue,
+                percentage: _weekTotalValue == 0
+                    ? 0
+                    : (t['value'] as double) / _weekTotalValue,
               ),
             );
           }).toList(),
